@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LEARN2EARN Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-indigo-600">LEARN2EARN</h1>
+      <nav>
+        <button onclick="showHome()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+          Home
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="content" class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Home page will be injected here -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">LEARN2EARN</h3>
+          <p class="text-gray-300">
+            Empowering the next generation of DevOps engineers through training and career development.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+          <p class="text-gray-300 mb-2">+237 675627271</p>
+          <p class="text-gray-300 mb-2">+1 (832) 621-8535</p>
+          <p class="text-gray-300">support@learn2earn.com</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Connect</h4>
+          <a href="https://chat.whatsapp.com/J0cp6zPTw4dEYkwYyPfoOW" target="_blank" class="text-green-400 hover:text-green-300">WhatsApp Group</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 LEARN2EARN. All rights reserved. Policy: Non-refundable, focus on consistency.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const services = [
+      {
+        id: 'devops',
+        title: 'DevOps Engineer Path',
+        description: 'Comprehensive training to become a professional DevOps Engineer',
+        image: 'https://mrcloudbook.com/wp-content/uploads/2025/06/DOCKER.png',
+        price: '$499',
+        duration: '12 weeks',
+        videos: [
+          { title: 'What is DevOps?', url: 'https://www.youtube.com/embed/4X89sL0L4IU' },
+          { title: 'DevOps Career Path', url: 'https://www.youtube.com/embed/9eGqB7m4XNo' }
+        ]
+      },
+      {
+        id: 'aws',
+        title: 'AWS Cloud Basics for DevOps',
+        description: 'Master AWS fundamentals tailored for DevOps professionals',
+        image: 'https://mrcloudbook.com/wp-content/uploads/2025/06/AMAZON.png',
+        price: '$399',
+        duration: '8 weeks',
+        videos: [
+          { title: 'AWS Fundamentals', url: 'https://www.youtube.com/embed/9vEhWxYq0dI' },
+          { title: 'AWS for DevOps', url: 'https://www.youtube.com/embed/79vJ9N4sXwM' }
+        ]
+      }
+    ];
+
+    function showHome() {
+      const content = document.getElementById('content');
+      content.innerHTML = `
+        <!-- Hero -->
+        <section class="bg-indigo-600 text-white py-20 text-center rounded-lg shadow-lg">
+          <h2 class="text-5xl font-bold mb-6">Transform Your Career with DevOps</h2>
+          <p class="text-xl mb-8">Master the skills that companies are looking for in today's job market</p>
+          <button onclick="showService('devops')" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100">
+            Start Learning
+          </button>
+        </section>
+
+        <!-- Welcome Video -->
+        <section class="py-16 bg-white">
+          <h3 class="text-3xl font-bold text-center mb-8 text-gray-900">Welcome to LEARN2EARN</h3>
+          <div class="flex justify-center">
+            <iframe src="https://www.youtube.com/embed/4X89sL0L4IU" class="w-full md:w-3/4 h-96 rounded-lg shadow-lg" allowfullscreen></iframe>
+          </div>
+        </section>
+
+        <!-- Services -->
+        <section class="py-16 bg-gray-50">
+          <h3 class="text-3xl font-bold text-center mb-12 text-gray-900">Our Courses</h3>
+          <div class="grid md:grid-cols-2 gap-8">
+            ${services.map(s => `
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img src="${s.image}" alt="${s.title}" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h4 class="text-xl font-bold mb-2">${s.title}</h4>
+                  <p class="text-gray-700 mb-4">${s.description}</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-indigo-600">${s.price}</span>
+                    <button onclick="showService('${s.id}')" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    function showService(id) {
+      const service = services.find(s => s.id === id);
+      const content = document.getElementById('content');
+      content.innerHTML = `
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <img src="${service.image}" alt="${service.title}" class="w-full h-64 object-cover mb-6">
+          <h2 class="text-3xl font-bold mb-4">${service.title}</h2>
+          <p class="text-lg text-gray-700 mb-6">${service.description}</p>
+          <p class="mb-2"><strong>Price:</strong> ${service.price}</p>
+          <p class="mb-6"><strong>Duration:</strong> ${service.duration}</p>
+          <h3 class="text-2xl font-semibold mb-4">Learning Videos</h3>
+          ${service.videos.map(v => `
+            <div class="mb-6">
+              <iframe src="${v.url}" class="w-full h-64 rounded-lg shadow" allowfullscreen></iframe>
+              <p class="text-sm text-gray-600 mt-2">${v.title}</p>
+            </div>
+          `).join('')}
+          <button onclick="showHome()" class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700">
+            Back to Home
+          </button>
+        </div>
+      `;
+    }
+
+    // Load homepage on start
+    showHome();
+  </script>
+</body>
+</html>
+
